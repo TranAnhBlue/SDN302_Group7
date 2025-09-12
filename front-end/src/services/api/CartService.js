@@ -1,4 +1,4 @@
-import { api } from '../index';
+import { api } from "../index";
 
 class CartService {
   async getAllProducts(userId) {
@@ -6,50 +6,58 @@ class CartService {
       const { data } = await api.get(`/cart/${userId}`);
       if (data) return data;
     } catch (error) {
-      throw new Error(error.response ? error.response.data.message : error.message);
+      throw new Error(
+        error.response ? error.response.data.message : error.message
+      );
     }
   }
 
   async updateCartItem(userId, productId, quantity, color) {
     try {
-      const { data } = await api.put('/cart/update', {
+      const { data } = await api.put("/cart/update", {
         userId,
         productId,
         quantity,
-        color
+        color,
       });
       return data;
     } catch (error) {
-      throw new Error(error.response ? error.response.data.message : error.message);
+      throw new Error(
+        error.response ? error.response.data.message : error.message
+      );
     }
   }
 
   async addToCartItem(userId, productId, quantity, color) {
     try {
-      const { data } = await api.post('/cart/add-to-cart', {
+      const { data } = await api.post("/cart/add-to-cart", {
         userId,
         productId,
         quantity,
-        color
+        color,
       });
       return data;
     } catch (error) {
-      throw new Error(error.response ? error.response.data.message : error.message);
+      throw new Error(
+        error.response ? error.response.data.message : error.message
+      );
     }
   }
 
   async deleteCartItem(userId, productId, color) {
     try {
-      const { data } = await api.delete('/cart/remove', {
+      const { data } = await api.delete("/cart/remove", {
         data: {
           userId,
           productId,
-          color
-        }
+          color,
+        },
       });
       return data;
     } catch (error) {
-      throw new Error(error.response ? error.response.data.message : error.message);
+      throw new Error(
+        error.response ? error.response.data.message : error.message
+      );
     }
   }
 }

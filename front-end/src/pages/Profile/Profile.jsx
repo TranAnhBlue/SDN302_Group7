@@ -357,7 +357,7 @@ const Profile = () => {
                 <Grid container spacing={2}>
                   <Grid item xs={12} sm={4}>
                     <Typography variant="subtitle2" color="text.secondary">Username</Typography>
-                    <Typography variant="body1" sx={{ fontWeight: 'medium' }}>{user.username}</Typography>
+                    <Typography variant="body1" sx={{ fontWeight: 'medium' }}>{user?.username || 'N/A'}</Typography>
                   </Grid>
                   <Grid item xs={12} sm={4}>
                     <Typography variant="subtitle2" color="text.secondary">Email</Typography>
@@ -366,7 +366,7 @@ const Profile = () => {
                   <Grid item xs={12} sm={4}>
                     <Typography variant="subtitle2" color="text.secondary">Vai trò</Typography>
                     <Typography variant="body1" sx={{ fontWeight: 'medium', textTransform: 'capitalize' }}>
-                      {user.role === 'buyer' ? 'Người mua' : user.role === 'seller' ? 'Người bán' : user.role}
+                      {user?.role === 'buyer' ? 'Người mua' : user?.role === 'seller' ? 'Người bán' : user?.role || 'N/A'}
                     </Typography>
                   </Grid>
                 </Grid>
