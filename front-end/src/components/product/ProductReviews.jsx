@@ -167,7 +167,7 @@ const ProductReviews = ({ productId }) => {
                                 <div>
                                   <h4 className="font-semibold">
                                     {reply.reviewerId.name || 'Anonymous'} 
-                                    {reply.reviewerId.role === 'seller' && (
+                                    {reply.reviewerId?.role === 'seller' && (
                                       <span className="bg-blue-100 text-blue-800 text-xs px-2 py-0.5 rounded-full ml-2">
                                         Seller
                                       </span>

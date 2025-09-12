@@ -68,7 +68,7 @@ const Header = () => {
   // Handle navigation based on user role
   const handleNavigation = (link, title) => {
     // If user is a seller and they click on Shop, redirect to /overview
-    if (isAuthenticated && user.role === 'seller' && title === 'Shop') {
+    if (isAuthenticated && user?.role === 'seller' && title === 'Shop') {
       navigate('/overview');
       setSidenav(false);
     } else {
@@ -101,7 +101,7 @@ const Header = () => {
                       className={({ isActive }) => 
                         `flex font-normal hover:font-bold w-20 h-6 justify-center items-center px-12 text-base ${isActive ? 'text-[#0F52BA] font-bold' : 'text-[#767676]'} hover:text-[#0F52BA] hover:underline underline-offset-[4px] decoration-[1px] md:border-r-[2px] border-r-gray-300 hoverEffect last:border-r-0 transition-colors`}
                       onClick={(e) => {
-                        if (isAuthenticated && user.role === 'seller' && title === 'Shop') {
+                        if (isAuthenticated && user?.role === 'seller' && title === 'Shop') {
                           e.preventDefault();
                           navigate('/overview');
                         }
@@ -117,10 +117,10 @@ const Header = () => {
                   {isAuthenticated ? (
                     <div className="flex items-center ml-4 space-x-4">
                       <span className="text-[#262626] font-medium">
-                        Hello, {user.username}
+                        Hello, {user?.username || 'User'}
                       </span>
                       {/* Show "Become a Seller" button only for buyers */}
-                      {user.role === 'buyer' && (
+                      {user?.role === 'buyer' && (
                         <button 
                           onClick={handleBecomeASeller}
                           className="border border-[#0F52BA] text-[#0F52BA] px-4 py-1 rounded hover:bg-[#0F52BA] hover:text-white transition-colors duration-300"
@@ -180,7 +180,7 @@ const Header = () => {
                             to={item.link}
                             state={{ data: location.pathname.split("/")[1] }}
                             onClick={(e) => {
-                              if (isAuthenticated && user.role === 'seller' && item.title === 'Shop') {
+                              if (isAuthenticated && user?.role === 'seller' && item.title === 'Shop') {
                                 e.preventDefault();
                                 navigate('/overview');
                                 setSidenav(false);
@@ -198,10 +198,10 @@ const Header = () => {
                       {isAuthenticated ? (
                         <>
                           <li className="font-bold text-lg text-white mt-4">
-                            Hello, {user.username}
+                            Hello, {user?.username || 'User'}
                           </li>
                           {/* Show "Become a Seller" option only for buyers */}
-                          {user.role === 'buyer' && (
+                          {user?.role === 'buyer' && (
                             <li className="font-normal hover:font-bold items-center text-lg text-gray-200 hover:underline underline-offset-[4px] decoration-[1px] hover:text-white">
                               <button 
                                 onClick={handleBecomeASeller}

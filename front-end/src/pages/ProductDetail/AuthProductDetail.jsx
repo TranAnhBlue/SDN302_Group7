@@ -254,7 +254,7 @@ const AuthProductDetail = () => {
     }
     
     // Prevent seller from adding their own product
-    if (user?.role === 'seller' && product?.product?.sellerId?._id === user.id) {
+    if (user?.role === 'seller' && product?.product?.sellerId?._id === user?.id) {
       toast.warning('You cannot add your own products to cart');
       return;
     }
@@ -542,7 +542,7 @@ const AuthProductDetail = () => {
                 size="large"
                 startIcon={<AddShoppingCart />}
                 onClick={handleAddToCart}
-                disabled={addingToCart || inventory?.quantity <= 0 || (user?.role === 'seller' && productData.sellerId?._id === user.id)}
+                disabled={addingToCart || inventory?.quantity <= 0 || (user?.role === 'seller' && productData.sellerId?._id === user?.id)}
               >
                 {addingToCart ? 'Adding...' : 'Add to Cart'}
               </ActionButton>

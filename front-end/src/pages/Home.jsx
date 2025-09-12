@@ -176,7 +176,7 @@ const Home = () => {
     const productToAdd = products.find(p => p._id === productId);
     
     // Prevent seller from adding their own product
-    if (user?.role === 'seller' && productToAdd && productToAdd.sellerId?._id === user.id) {
+    if (user?.role === 'seller' && productToAdd && productToAdd.sellerId?._id === user?.id) {
       toast.warning('You cannot add your own products to cart');
       return;
     }

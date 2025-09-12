@@ -1,21 +1,19 @@
 // Products.js
-import * as React from "react";
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
-import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
-import Pagination from "@mui/material/Pagination";
-import Stack from "@mui/material/Stack";
+import CheckBoxIcon from "@mui/icons-material/CheckBox";
+import CheckBoxOutlineBlankIcon from "@mui/icons-material/CheckBoxOutlineBlank";
+import ClearAllIcon from "@mui/icons-material/ClearAll";
+import CommentIcon from "@mui/icons-material/Comment";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
-import CommentIcon from "@mui/icons-material/Comment";
-import Tooltip from "@mui/material/Tooltip";
+import FilterAltIcon from "@mui/icons-material/FilterAlt";
+import SearchIcon from "@mui/icons-material/Search";
 import {
   Alert,
+  Autocomplete,
   Box,
   Button,
   Checkbox,
+  Chip,
   Dialog,
   DialogActions,
   DialogContent,
@@ -23,27 +21,28 @@ import {
   DialogTitle,
   FormControlLabel,
   FormGroup,
+  Grid,
   IconButton,
+  List,
+  ListItem,
+  ListItemText,
   Paper,
   Snackbar,
   TableContainer,
   TextField,
   Typography,
-  Grid,
-  MenuItem,
-  List,
-  ListItem,
-  ListItemText,
-  Autocomplete,
-  Chip,
 } from "@mui/material";
+import Pagination from "@mui/material/Pagination";
+import Stack from "@mui/material/Stack";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+import Tooltip from "@mui/material/Tooltip";
 import axios from "axios";
+import * as React from "react";
 import UpdateProduct from "./UpdateProduct";
-import FilterAltIcon from "@mui/icons-material/FilterAlt";
-import ClearAllIcon from "@mui/icons-material/ClearAll";
-import SearchIcon from "@mui/icons-material/Search";
-import CheckBoxOutlineBlankIcon from "@mui/icons-material/CheckBoxOutlineBlank";
-import CheckBoxIcon from "@mui/icons-material/CheckBox";
 export default function Products({
   products: initialProducts,
   onProductUpdated,
@@ -61,7 +60,9 @@ export default function Products({
     severity: "success",
   });
   const [keywords, setKeywords] = React.useState("");
-  const [selectedActiveStatuses, setSelectedActiveStatuses] = React.useState([]);
+  const [selectedActiveStatuses, setSelectedActiveStatuses] = React.useState(
+    []
+  );
   const [selectedStores, setSelectedStores] = React.useState([]);
   const [selectedRatingRanges, setSelectedRatingRanges] = React.useState([]);
   const [currentPage, setCurrentPage] = React.useState(1);
@@ -69,7 +70,7 @@ export default function Products({
   const [productRatings, setProductRatings] = React.useState({});
   const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
   const checkedIcon = <CheckBoxIcon fontSize="small" />;
-  
+
   // Active/Inactive statuses for filter
   const activeStatuses = ["active", "inactive"];
   const handleDeleteProduct = async () => {
@@ -117,7 +118,9 @@ export default function Products({
         `http://localhost:9999/api/admin/products/${product._id}/reviews`,
         {
           headers: {
-            Authorization: `Bearer ${localStorage.getItem("accessToken") || ""}`,
+            Authorization: `Bearer ${
+              localStorage.getItem("accessToken") || ""
+            }`,
           },
         }
       );
@@ -147,7 +150,7 @@ export default function Products({
       if (product.sellerId) {
         const sellerId = product.sellerId._id;
         const sellerName =
-          product.sellerId.username || product.sellerId.username || "Unknown";
+          product.sellerId?.username || product.sellerId?.username || "Unknown";
         if (!storeMap.has(sellerId)) {
           storeMap.set(sellerId, sellerName);
         }
@@ -184,7 +187,9 @@ export default function Products({
               `http://localhost:9999/api/admin/products/${product._id}/reviews`,
               {
                 headers: {
-                  Authorization: `Bearer ${localStorage.getItem("accessToken") || ""}`,
+                  Authorization: `Bearer ${
+                    localStorage.getItem("accessToken") || ""
+                  }`,
                 },
               }
             );
@@ -321,7 +326,7 @@ export default function Products({
         open={Boolean(deletingProduct)}
         onClose={() => setDeletingProduct(null)}
         PaperProps={{
-          sx: { borderRadius: 2 }
+          sx: { borderRadius: 2 },
         }}
       >
         <DialogTitle>
@@ -332,15 +337,19 @@ export default function Products({
         </DialogTitle>
         <DialogContent>
           <DialogContentText>
-            Are you sure you want to delete product <b>{deletingProduct?.title}</b>{" "}
-            This action cannot be undone.
+            Are you sure you want to delete product{" "}
+            <b>{deletingProduct?.title}</b> This action cannot be undone.
           </DialogContentText>
         </DialogContent>
         <DialogActions>
           <Button onClick={() => setDeletingProduct(null)} color="inherit">
             Cancel
           </Button>
-          <Button onClick={handleDeleteProduct} color="error" variant="contained">
+          <Button
+            onClick={handleDeleteProduct}
+            color="error"
+            variant="contained"
+          >
             Delete
           </Button>
         </DialogActions>

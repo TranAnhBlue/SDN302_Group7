@@ -27,7 +27,7 @@ import Overview from "./pages/DashboardSeller/Overview/Overview";
 import OverviewA from "./pages/DashboardAdmin/Overview/Overview";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { fetchCart } from "./redux/slices/cart.slice";
+import { fetchCart } from "./features/cart/cartSlice";
 
 import { Provider } from 'react-redux';
 import 'react-toastify/dist/ReactToastify.css';

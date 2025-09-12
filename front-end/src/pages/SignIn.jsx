@@ -58,7 +58,7 @@ const SignIn = () => {
       toast.success('Login successful!');
       
       // Redirect based on user role
-      if (response.user.role === 'admin') {
+      if (response.user?.role === 'admin') {
         navigate('/admin'); // Admin users to admin overview
       } else {
         navigate('/'); // Regular users to home page
