@@ -23,6 +23,7 @@ import ManageOrder from "./pages/DashboardSeller/ManageOrder/ManageOrderHistory"
 import ManageDispute from "./pages/DashboardSeller/ManageDispute/ManageDispute";
 import ManageReturnRequest from "./pages/DashboardSeller/ManageReturnRequest/ManageReturnRequest";
 import ManageShipping from "./pages/DashboardSeller/ManageShipping/ManageShipping";
+import OTPVerification from './pages/OTPVerification'; // import component OTP
 import Overview from "./pages/DashboardSeller/Overview/Overview";
 import OverviewA from "./pages/DashboardAdmin/Overview/Overview";
 import { useEffect } from "react";
@@ -133,10 +134,12 @@ const router = createBrowserRouter(
         <Route path="/admin/manage-vouchers" element={<ManageVoucher />}></Route>
       </Route>
 
-      <Route path="/signin" element={<SignIn />}></Route>
+        
       <Route path="/signup" element={<SignUp />}></Route>
-      <Route path="/store-registration" element={<StoreRegistration />}></Route>
+      <Route path="/verify-otp" element={<OTPVerification />}></Route> {/* Thêm route này */}
+      <Route path="/signin" element={<SignIn />}></Route>  
       <Route path="/forgot-password" element={<ForgotPassword />}></Route>
+      <Route path="/store-registration" element={<StoreRegistration />}></Route>
       <Route path="*" element={<ErrorPage />} />
     </Route>
   )

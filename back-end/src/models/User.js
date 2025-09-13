@@ -8,20 +8,18 @@ const userSchema = new Schema(
     fullname: { type: String },
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
-    role: {
-      type: String,
-      enum: ["buyer", "seller", "admin"],
-      default: "buyer",
-    },
+    role: { type: String, enum: ["buyer", "seller", "admin"], default: "buyer" },
     avatarURL: { type: String },
-    action: {
-      type: String,
-      enum: ["lock", "unlock"],
-      default: "unlock",
-    },
+    action: { type: String, enum: ["lock", "unlock"], default: "unlock" },
+    
+    // Mới thêm
+    isVerified: { type: Boolean, default: false },
+    otp: { type: String },
+    otpExpires: { type: Date },
   },
   { timestamps: true, versionKey: false }
 );
+
 
 // Mã hóa mật khẩu trước khi lưu
 userSchema.pre("save", async function (next) {

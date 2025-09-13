@@ -15,10 +15,14 @@ const { authMiddleware } = require("../middleware/auth.middleware");
 router.use("/admin", adminRouter);
 router.use("/seller", sellerRouter);
 
-// Routes cho đăng ký và đăng nhập
-router.post("/register", authController.register);
-router.post("/login", authController.login);
-router.post("/forgot-password", authController.forgotPassword);
+// Routes cho đăng ký và xác thực email
+router.post("/register", authController.register); // Đăng ký
+router.post("/verify-otp", authController.verifyOTP);
+router.post("/resend-otp", authController.resendOTP);     // (Tuỳ chọn) Gửi lại OTP nếu hết hạn
+
+// Routes đăng nhập và quên mật khẩu
+router.post("/login", authController.login);                // Đăng nhập
+router.post("/forgot-password", authController.forgotPassword); // Quên mật khẩu
 
 // User profile routes
 router.get("/profile", authMiddleware, authController.getProfile);
