@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
-import  {jwtDecode } from 'jwt-decode';
+import { jwtDecode } from 'jwt-decode';
 
-// Hàm lấy state ban đầu
+// Sửa: Đảm bảo luôn trả về object hợp lệ
 const getInitialState = () => {
   try {
     const token = localStorage.getItem('token');
@@ -42,13 +42,6 @@ const authSlice = createSlice({
       localStorage.setItem('accessToken', token);
     },
     logout: (state) => {
-      // Xác nhận trước khi logout
-      const confirmLogout = window.confirm("Bạn có chắc chắn muốn đăng xuất không?");
-      if (!confirmLogout) {
-        return; // Người dùng hủy, không làm gì
-      }
-
-      // Thực hiện logout nếu đồng ý
       state.user = null;
       state.token = null;
       state.isAuthenticated = false;

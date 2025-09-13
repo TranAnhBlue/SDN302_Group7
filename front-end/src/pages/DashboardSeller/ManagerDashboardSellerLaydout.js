@@ -51,8 +51,8 @@ function Copyright(props) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
       {'Copyright © '}
-      <Link color="inherit" href="/">
-        ebay
+      <Link color="inherit" href="#!">
+        TUTHAITU
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -62,41 +62,41 @@ function Copyright(props) {
 
 const drawerWidth = 260;
 
-// Custom theme with eBay color palette
+// Custom theme with a modern color palette
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#0064D3', // eBay Blue
+      main: '#2563eb', // Vibrant blue
       light: '#3b82f6',
       dark: '#1d4ed8'
     },
     secondary: {
-      main: '#E53238', // eBay Red
-      light: '#ef5350',
-      dark: '#c62828'
+      main: '#8b5cf6', // Purple
+      light: '#a78bfa',
+      dark: '#7c3aed'
     },
     success: {
-      main: '#86B817', // eBay Green
-      light: '#a3d06c',
-      dark: '#5a7e12'
+      main: '#10b981', // Green
+      light: '#34d399',
+      dark: '#059669'
     },
     error: {
-      main: '#E53238', // đồng bộ với secondary
-      light: '#ef5350',
-      dark: '#c62828'
+      main: '#ef4444', // Red
+      light: '#f87171',
+      dark: '#dc2626'
     },
     warning: {
-      main: '#F5AF02', // eBay Yellow
-      light: '#fdd835',
-      dark: '#c49000'
+      main: '#f59e0b', // Amber
+      light: '#fbbf24',
+      dark: '#d97706'
     },
     info: {
-      main: '#0064D3', // dùng lại eBay Blue
-      light: '#42a5f5',
-      dark: '#0d47a1'
+      main: '#0ea5e9', // Sky blue
+      light: '#38bdf8',
+      dark: '#0284c7'
     },
     background: {
-      default: '#f9fafb',
+      default: '#f9fafb', // Light gray background
       paper: '#ffffff'
     },
     text: {
@@ -146,7 +146,6 @@ const theme = createTheme({
     }
   }
 });
-
 
 const AppBar = styled(MuiAppBar, {
   shouldForwardProp: (prop) => prop !== 'open',
