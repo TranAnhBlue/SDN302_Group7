@@ -62,6 +62,7 @@ import ManageStore from "./pages/DashboardAdmin/ManageShop/ManageStore";
 import ManageProductA from "./pages/DashboardAdmin/ManageProduct/ManageProduct";
 import ManageVoucher from "./pages/DashboardAdmin/ManageVoucher/ManageVoucher";
 import AdminDashboardLayout from "./pages/DashboardAdmin/ManagerDashboardAdminLaydout";
+import AuthCallback from "./pages/AuthCallback";
 
 
 const Layout = () => {
@@ -138,6 +139,7 @@ const router = createBrowserRouter(
       <Route path="/signup" element={<SignUp />}></Route>
       <Route path="/verify-otp" element={<OTPVerification />}></Route> {/* Thêm route này */}
       <Route path="/signin" element={<SignIn />}></Route>  
+      <Route path="/auth/callback" element={<AuthCallback />}></Route>
       <Route path="/forgot-password" element={<ForgotPassword />}></Route>
       <Route path="/store-registration" element={<StoreRegistration />}></Route>
       <Route path="*" element={<ErrorPage />} />
