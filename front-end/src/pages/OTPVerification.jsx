@@ -150,9 +150,9 @@ const OTPVerification = () => {
           </button>
 
           <div className="text-sm text-center mt-4">
-            <span className="text-gray-600">Đã xác thực? </span>
+            <span className="text-gray-600">Verified? </span>
             <Link to="/signin" className="font-medium text-[#0F52BA] hover:text-[#0A3C8A] transition-colors">
-              Đăng nhập
+              Sign In
             </Link>
           </div>
         </form>
