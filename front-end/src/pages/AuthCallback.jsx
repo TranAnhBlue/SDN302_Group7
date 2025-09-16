@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setCredentials } from "../features/auth/authSlice";
+import { jwtDecode} from "jwt-decode";
 
 const AuthCallback = () => {
   const navigate = useNavigate();
@@ -11,16 +12,15 @@ const AuthCallback = () => {
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const token = params.get("token");
-    const id = params.get("id");
-    const email = params.get("email");
-    const role = params.get("role");
 
     if (token) {
+      const decoded = jwtDecode(token);
       dispatch(setCredentials({
-        user: { id, email, role },
+        user: { id: decoded.id, role: decoded.role },
         token,
       }));
-      navigate("/");
+      navigate("/", { replace: true });
+      
     } else {
       navigate("/signin?error=GoogleLoginFailed");
     }

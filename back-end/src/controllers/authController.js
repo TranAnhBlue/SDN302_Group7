@@ -126,17 +126,14 @@ exports.login = async (req, res) => {
 // ------------------ LOGIN BY GOOGLE ------------------
 exports.googleCallback = async (req, res) => {
   try {
-    // user đã được passport-google-oauth20 xử lý
     const user = req.user;
-
-    // Tạo JWT để frontend dùng
+    console.log("Google user:", user); // Thêm dòng này
     const token = jwt.sign(
       { id: user._id, role: user.role },
       process.env.JWT_SECRET,
       { expiresIn: "1d" }
     );
-
-    // Redirect về frontend kèm token
+    console.log("Google token:", token); // Thêm dòng này
     res.redirect(`${process.env.CLIENT_URL}/auth/callback?token=${token}`);
   } catch (err) {
     console.error("Google login error:", err);
